@@ -1,9 +1,15 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 
+import { User } from '../shared/models';
 import { RequestHeaders, Service, UserCredentials } from './models';
+
+enum Storage {
+    TOKEN = 'authToken',
+    USER = 'user',
+}
 
 @Injectable()
 export class AuthenticationService extends Service {
@@ -12,22 +18,23 @@ export class AuthenticationService extends Service {
         super();
      }
 
-    authenticate(userCredentials: UserCredentials) {
-        console.log(this.apiUrl);
-        this.http
+    authenticate(userCredentials: UserCredentials): Observable<void> {
+
+        return this.http
         .post(`${this.apiUrl}/login`, userCredentials, {
             observe: 'response',
             responseType: 'text'
         })
         .pipe(catchError(this.handleError))
-        .subscribe(response => {
+        .pipe(mergeMap(response => {
             this._saveToken(response);
-        });
+            return this._loadUser();
+        }));
 
     }
 
     isAuthenticated(): Observable<boolean> {
-        if (!!(localStorage.getItem('authToken'))) {
+        if (!!(localStorage.getItem(Storage.TOKEN))) {
             return this.http.get<boolean>(`${this.apiUrl}/validate-token`);
         }
 
@@ -35,17 +42,36 @@ export class AuthenticationService extends Service {
     }
 
     unauthenticate() {
-        localStorage.removeItem('authToken');
+        localStorage.removeItem(Storage.TOKEN);
+        localStorage.removeItem(Storage.USER);
     }
 
     private _saveToken(response: HttpResponse<string>) {
         const fullToken = response.headers.get(RequestHeaders.AUTHORIZATION);
         const token = fullToken.substring(7, fullToken.length);
-        localStorage.setItem('authToken', token);
+        localStorage.setItem(Storage.TOKEN, token);
     }
 
     getBearerToken(): string {
-        const token = localStorage.getItem('authToken');
+        const token = localStorage.getItem(Storage.TOKEN);
         return `Bearer ${token}`;
+    }
+
+    getUser() {
+        const user: User = JSON.parse(localStorage.getItem(Storage.USER));
+        return  user;
+    }
+
+    private _loadUser(): Observable<void> {
+        return this.http.get<User>(`${this.apiUrl}/users/principal`)
+        .pipe(catchError(this.handleError))
+        .pipe(map(user => {
+                this._storeUser(user);
+            })
+        );
+    }
+
+    private _storeUser(user: User) {
+        localStorage.setItem(Storage.USER, JSON.stringify(user));
     }
 }

@@ -32,7 +32,9 @@ export class LoginComponent {
    login() {
     const values = this.loginForm.value;
     const user = new UserCredentials({...values});
-    this.authentication.authenticate(user);
+    this.authentication.authenticate(user).subscribe({
+      next: () => console.log(this.authentication.getUser())
+    });
    }
 
 }

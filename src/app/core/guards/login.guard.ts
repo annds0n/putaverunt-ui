@@ -13,8 +13,9 @@ export class LoginGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-       return this.authService.isAuthenticated().pipe(map(isAuthenticated => {
+       return this.authService.isAuthenticated()
+       .pipe(map(isAuthenticated => {
             return !isAuthenticated;
-       }) );
+       }));
     }
 }
