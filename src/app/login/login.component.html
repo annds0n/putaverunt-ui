@@ -1,0 +1,5 @@
+<div [formGroup]="loginForm">
+  <input formControlName="userName" type="text" maxlength="20">
+  <input formControlName="password" type="password" maxlength="100">
+  <button (click)="login()">Login</button>
+</div>
