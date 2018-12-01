@@ -30,8 +30,8 @@ export class LoginComponent {
    }
 
    login() {
-    const values = this.loginForm.value;
-    const user = new UserCredentials({...values});
+    const {userName, password} = this.loginForm.value;
+    const user = new UserCredentials({userName, password});
     this.authentication.authenticate(user).subscribe({
       next: () => console.log(this.authentication.getUser())
     });

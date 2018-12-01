@@ -1,10 +1,10 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { map, mergeMap } from 'rxjs/operators';
 
-import { User } from '../shared/models';
 import { RequestHeaders, Service, UserCredentials } from './models';
+import { User } from './models/user';
 
 enum Storage {
     TOKEN = 'authToken',
@@ -18,14 +18,14 @@ export class AuthenticationService extends Service {
         super();
      }
 
-    authenticate(userCredentials: UserCredentials): Observable<void> {
+    authenticate(userCredentials: UserCredentials): Observable<User> {
 
         return this.http
         .post(`${this.apiUrl}/login`, userCredentials, {
             observe: 'response',
             responseType: 'text'
         })
-        .pipe(catchError(this.handleError))
+        // .pipe(catchError(this.handleError))
         .pipe(mergeMap(response => {
             this._saveToken(response);
             return this._loadUser();
@@ -57,16 +57,22 @@ export class AuthenticationService extends Service {
         return `Bearer ${token}`;
     }
 
-    getUser() {
+    getUser(): Observable<User> {
         const user: User = JSON.parse(localStorage.getItem(Storage.USER));
-        return  user;
+
+        if (!user) {
+            return this._loadUser();
+        }
+
+        return  of(user);
     }
 
-    private _loadUser(): Observable<void> {
+    _loadUser(): Observable<User> {
         return this.http.get<User>(`${this.apiUrl}/users/principal`)
-        .pipe(catchError(this.handleError))
+        // .pipe(catchError(this.handleError))
         .pipe(map(user => {
                 this._storeUser(user);
+                return user;
             })
         );
     }

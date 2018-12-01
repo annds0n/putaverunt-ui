@@ -8,11 +8,10 @@ import { AuthenticatedRouteGuard, LoginGuard } from './guards';
 import { HttpErrorInterceptor, JWTHeaderInterceptor } from './interceptors';
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
   ],
   providers: [
     AuthenticationService,
