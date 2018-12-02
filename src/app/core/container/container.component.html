@@ -1,11 +1,17 @@
 <section  fxFlexFill fxLayout="column">
-  <mat-toolbar>
+  <mat-toolbar fxLayoutAlign="space-between center">
     <span>Menu</span>
+    <div fxLayout="column">
+      <span class="mat-body-1">Usuario: {{ user.name }} </span>
+      <span class="mat-body-2">Perfil: {{ user.perfil | perfil }}</span>
+    </div>
   </mat-toolbar>
-  <div class="pvt-content" fxFlex>
-    <ng-content></ng-content>
+  <div fxFlex class="pvt-content" fxLayout="column">
+    <div fxFlex>
+      <ng-content></ng-content>
+    </div>
+    <footer>
+      aqui é o footer
+    </footer>
   </div>
-  <footer>
-    aqui é o footer
-  </footer>
 </section>

@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AuthenticationService } from './authentication.service';
 import { AuthenticatedRouteGuard, LoginGuard } from './guards';
 import { HttpErrorInterceptor, JWTHeaderInterceptor } from './interceptors';
+import { UserResolver } from './resolvers';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { HttpErrorInterceptor, JWTHeaderInterceptor } from './interceptors';
     AuthenticatedRouteGuard,
     {provide: HTTP_INTERCEPTORS, useClass: JWTHeaderInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true},
+    UserResolver
   ]
 })
 export class CoreModule { }

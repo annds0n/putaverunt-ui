@@ -6,7 +6,7 @@ import { AuthenticationService } from '../authentication.service';
 import { User } from '../models/user';
 
 @Injectable()
-export class UserResolveGuard implements Resolve<User> {
+export class UserResolver implements Resolve<User> {
 
 constructor(private readonly authService: AuthenticationService) { }
 
