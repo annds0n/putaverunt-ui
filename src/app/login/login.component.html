@@ -1,5 +1,20 @@
-<div [formGroup]="loginForm">
-  <input formControlName="userName" type="text" maxlength="20">
-  <input formControlName="password" type="password" maxlength="100">
-  <button (click)="login()">Login</button>
-</div>
+<section fxFlexFill fxLayoutAlign="center center">
+  <div [formGroup]="loginForm" fxFlex="30" class="login-content mat-elevation-z2">
+    <div fxLayoutAlign="center center">
+      <h2>Putaverunt</h2>
+    </div>
+    <div fxLayout="row">
+      <mat-form-field fxFlex>
+        <input matInput formControlName="userName" placeholder="usuario" type="text" maxlength="20">
+      </mat-form-field>
+    </div>
+    <div fxLayout="row">
+      <mat-form-field fxFlex>
+        <input matInput formControlName="password" placeholder="senha" type="password" maxlength="100">
+      </mat-form-field>
+    </div>
+    <div fxLayoutAlign="end" fxLayout="row">
+      <button mat-raised-button color="primary" [disabled]="loginForm.invalid" (click)="login()">Login</button>
+    </div>
+  </div>
+</section>

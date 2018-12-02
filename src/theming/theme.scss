@@ -1,0 +1,12 @@
+@import '~@angular/material/theming';
+@import 'palette';
+@include mat-core();
+
+
+$pvt-primary: mat-palette($putaverunt-dark-blue, 500);
+$pvt-accent:  mat-palette($putaverunt-green, 600);
+$pvt-warn:    mat-palette($putaverunt-red, 600);
+
+$putaverunt-theme: mat-light-theme($pvt-primary, $pvt-accent, $pvt-warn);
+
+@include angular-material-theme($putaverunt-theme);

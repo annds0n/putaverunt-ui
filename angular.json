@@ -27,8 +27,16 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/theming/styles.scss",
+              "src/theming/theme.scss",
+              "src/theming/palette.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/theming/theme",
+                "src/theming/palette"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
