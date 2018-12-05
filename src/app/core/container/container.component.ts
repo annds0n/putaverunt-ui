@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { AuthenticationService } from '../authentication.service';
 import { User } from '../models/user';
@@ -10,7 +11,11 @@ import { User } from '../models/user';
 })
 export class ContainerComponent implements OnInit {
 
-  constructor(private readonly authService: AuthenticationService) { }
+  constructor(
+    private readonly _router: Router,
+    private readonly route: ActivatedRoute,
+    private readonly authService: AuthenticationService
+    ) { }
 
   user: User;
 
@@ -20,6 +25,11 @@ export class ContainerComponent implements OnInit {
       next: user => this.user = user,
       error: err => console.log(err)
     });
+  }
+
+  logoff() {
+    this.authService.unauthenticate();
+    this._router.navigate([`${this.route.snapshot.url}/login`], {relativeTo: this.route});
   }
 
 }

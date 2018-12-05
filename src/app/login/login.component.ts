@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { AuthenticationService } from '../core/authentication.service';
 import { UserCredentials } from '../core/models';
@@ -15,7 +16,9 @@ export class LoginComponent {
 
   constructor(
     fb: FormBuilder,
-    private readonly authentication: AuthenticationService
+    private readonly authentication: AuthenticationService,
+    private readonly _router: Router,
+    private readonly _route: ActivatedRoute
     ) {
     this.loginForm = fb.group({
       userName: ['', Validators.compose([
@@ -33,7 +36,8 @@ export class LoginComponent {
     const {userName, password} = this.loginForm.value;
     const user = new UserCredentials({userName, password});
     this.authentication.authenticate(user).subscribe({
-      next: () => console.log(this.authentication.getUser())
+      next: () => this._router.navigate(['..'], {relativeTo: this._route}),
+      error: err => console.log(err)
     });
    }
 

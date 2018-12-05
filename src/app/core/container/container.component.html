@@ -1,9 +1,14 @@
 <section  fxFlexFill fxLayout="column">
-  <mat-toolbar fxLayoutAlign="space-between center">
-    <span>Menu</span>
-    <div fxLayout="column">
-      <span class="mat-body-1">Usuario: {{ user.name }} </span>
-      <span class="mat-body-2">Perfil: {{ user.perfil | perfil }}</span>
+  <mat-toolbar fxLayoutAlign="space-between center" color="primary">
+    <h3 class="pvt-title mat-display-3">Putaverunt</h3>
+    <div fxLayout="row" fxLayoutGap="20px">
+      <div fxLayout="column">
+        <span class="mat-body-1">Usuario: {{ user.name }} </span>
+        <span class="mat-body-2">Perfil: {{ user.perfil | perfil }}</span>
+      </div>
+      <button matTooltip="Sair" (click)="logoff()" mat-icon-button>
+        <mat-icon>power_settings_new</mat-icon>
+      </button>
     </div>
   </mat-toolbar>
   <div fxFlex class="pvt-content" fxLayout="column">

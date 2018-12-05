@@ -27,14 +27,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/theming/styles.scss",
-              "src/theming/theme.scss",
-              "src/theming/palette.scss"
+              "src/theming/styles.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/theming/theme",
-                "src/theming/palette"
+                "src/theming"
               ]
             },
             "scripts": []

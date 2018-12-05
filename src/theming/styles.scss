@@ -1,9 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Maven+Pro|Source+Code+Pro');
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Maven+Pro|Source+Code+Pro|Gamja+Flower');
+@import './theme';
+@import './palette';
+@import './mixins';
+
 html, body {
     margin: 0;
     height: 100%;
-    h3, h2 {
-        font-family: 'Source Code Pro';
-    }
+}
+
+body {
+    background-image: url('../assets/imgs/20181103_173339.jpg');
+    background-size: cover;
+}
+
+.pvt-title {
+    @include putaverunt-title;
+    // font-size: 30px;
 }
