@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map, mergeMap } from 'rxjs/operators';
 
-import { RequestHeaders, Service, UserCredentials } from './models';
+import { Repository, RequestHeaders, UserCredentials } from './models';
 import { User } from './models/user';
 
 enum Storage {
@@ -12,7 +12,7 @@ enum Storage {
 }
 
 @Injectable()
-export class AuthenticationService extends Service {
+export class AuthenticationService extends Repository {
 
     constructor(private readonly http: HttpClient) {
         super();

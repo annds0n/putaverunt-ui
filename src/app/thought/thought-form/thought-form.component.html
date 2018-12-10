@@ -1,0 +1,7 @@
+<pvt-container>
+  <div [formGroup]="thoughtForm">
+    <input type="text" formControlName="title">
+    <textarea formControlName="description" cols="30" rows="10"></textarea>
+    <button (click)="create()">Salvar</button>
+  </div>
+</pvt-container>

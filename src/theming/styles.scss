@@ -18,3 +18,41 @@ body {
     @include putaverunt-title;
     // font-size: 30px;
 }
+
+.pvt-instant {
+    @include putaverunt-instant;
+    color: $pvt-grey;
+}
+
+.pvt-fadeInUpBig {
+    -webkit-animation-name: pvt-fadeInUpBig;
+    animation-name: pvt-fadeInUpBig;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+@-webkit-keyframes pvt-fadeInUpBig {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+@keyframes pvt-fadeInUpBig {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+} 

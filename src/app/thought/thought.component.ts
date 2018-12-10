@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Page } from '../core';
+import { Thought, ThoughtService } from './shared';
+
 @Component({
   selector: 'pvt-thought',
   templateUrl: './thought.component.html',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ThoughtComponent implements OnInit {
 
-  constructor() { }
+  page = new Page<Thought>();
+
+  constructor(private readonly service: ThoughtService) { }
 
   ngOnInit() {
+    this.service.getPage()
+    .subscribe({
+      next: page => this.page = page,
+      error: err => console.log(err)
+    });
   }
 
 }

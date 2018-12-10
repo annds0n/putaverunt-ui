@@ -2,3 +2,15 @@
     font: 500 30px/40px 'Gamja Flower', cursive !important;
 }
 
+@mixin putaverunt-generic-title($size) {
+    font-size: $size;
+    font-family: 'Amatic SC';
+}
+
+@mixin putaverunt-instant {
+    font-size: 1rem;
+    font-family: 'Source Code Pro';
+    font-weight: 500;
+    font-style: italic;
+}
+

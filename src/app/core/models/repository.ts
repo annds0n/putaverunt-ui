@@ -8,13 +8,15 @@ export interface Config {
   apiUrlLocal: string;
 }
 
-export class Service {
+export class Repository {
 
   handleError(error: HttpErrorResponse) {
       if (error.error instanceof ErrorEvent) {
         // A client-side or network error occurred. Handle it accordingly.
         console.error('An error occurred:', error.error.message);
-      } else {
+      } else if (error.status === 500) {
+
+        console.log(error);
         // The backend returned an unsuccessful response code.
         // The response body may contain clues as to what went wrong,
         console.error(

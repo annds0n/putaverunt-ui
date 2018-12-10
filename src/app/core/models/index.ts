@@ -1,4 +1,5 @@
 export * from './user-credentials';
-export * from './service';
+export * from './repository';
 export * from './request-headers';
 export * from  './perfil.pipe';
+export * from './pagination';
