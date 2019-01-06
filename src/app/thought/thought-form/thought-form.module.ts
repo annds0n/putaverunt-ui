@@ -16,7 +16,7 @@ import { ThoughtFormComponent } from './thought-form.component';
     MatIconModule,
     MatButtonModule,
     ContainerModule,
-    SharedModule
+    SharedModule,
   ]
 })
 export class ThoughtFormModule { }

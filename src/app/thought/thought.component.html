@@ -1,10 +1,16 @@
 <pvt-container>
   <div fxLayout="column" fxLayoutGap="12px">
+    <div fxLayout="row" fxLayoutAlign="end">
+      <button [routerLink]="['form']" color="accent" mat-raised-button>
+        <mat-icon>add</mat-icon>
+        <span>Novo</span>
+      </button>
+    </div>
     <div class="pvt-fadeInUpBig" *ngFor="let thought of page.content" fxLayout="row" fxLayoutAlign="center center">
       <mat-card fxFlex="70">
         <div class="thought-header" fxLayoutAlign="space-between">
           <div fxLayout="column">
-            <span class="thought-title">{{ thought.title }}</span>
+            <span class="thought-title">{{ thought.title | decryptText:secret }}</span>
             <span class="pvt-instant">{{ thought.moment }}</span>
           </div>
           <div>
@@ -17,11 +23,13 @@
           </div>
         </div>
         <mat-card-content>
-          <p class="thought-text">{{ thought.description }}</p>
+          <p class="thought-text">{{ thought.description | decryptText:secret }}</p>
         </mat-card-content>
       </mat-card>
     </div>
-    <mat-paginator [length]="page.numberOfElements" [pageSize]="10" [pageSizeOptions]="[5, 10, 15, 20]">
-    </mat-paginator>
+    <div fxLayoutAlign="end end">
+      <mat-paginator [length]="page.numberOfElements" [pageSize]="10" [pageSizeOptions]="[5, 10, 15, 20]">
+      </mat-paginator>
+    </div>
   </div>
 </pvt-container>

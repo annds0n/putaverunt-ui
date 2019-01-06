@@ -13,6 +13,7 @@ export class ThoughtFormComponent implements OnInit {
   thoughtForm: FormGroup;
 
   constructor(
+
     private readonly service: ThoughtService,
     fb: FormBuilder,
   ) {
@@ -27,12 +28,13 @@ export class ThoughtFormComponent implements OnInit {
 
   create() {
     const { title, description } = this.thoughtForm.value;
-    const thought = new Thought({title, description});
+    const thought = new Thought({ title, description });
+
     this.service.create(thought)
-    .subscribe({
-      next: r => console.log(r),
-      error: err => console.log(err)
-    });
+      .subscribe({
+        next: r => console.log(r),
+        error: err => console.log(err)
+      });
   }
 
 }

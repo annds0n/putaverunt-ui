@@ -6,7 +6,7 @@ export class Thought {
     changed: boolean;
     changeMoment: Date;
 
-    constructor(init: Partial<Thought>) {
+    constructor(init?: Partial<Thought>) {
         Object.assign(this, init);
     }
 

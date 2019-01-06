@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { forkJoin } from 'rxjs';
 
 import { Page } from '../core';
+import { AuthenticationService } from '../core/authentication.service';
 import { Thought, ThoughtService } from './shared';
 
 @Component({
@@ -11,15 +13,26 @@ import { Thought, ThoughtService } from './shared';
 export class ThoughtComponent implements OnInit {
 
   page = new Page<Thought>();
+  secret: string;
 
-  constructor(private readonly service: ThoughtService) { }
+  constructor(
+    private readonly _authService: AuthenticationService,
+    private readonly service: ThoughtService
+  ) { }
 
   ngOnInit() {
-    this.service.getPage()
-    .subscribe({
-      next: page => this.page = page,
-      error: err => console.log(err)
-    });
-  }
+
+    const pageStream = this.service.getPage();
+    const secretStream = this._authService.getSecretKey();
+      forkJoin(pageStream, secretStream)
+      .subscribe({
+        next: ([page, secret]) => {
+          this.page = page;
+          this.secret = secret;
+        },
+        error: err => console.log(err)
+      });
+
+    }
 
 }

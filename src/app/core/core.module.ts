@@ -7,6 +7,7 @@ import { AuthenticationService } from './authentication.service';
 import { ContainerModule } from './container';
 import { AuthenticatedRouteGuard, LoginGuard } from './guards';
 import { HttpErrorInterceptor, JWTHeaderInterceptor } from './interceptors';
+import { CorePipesModule } from './pipes';
 import { UserResolver } from './resolvers';
 
 @NgModule({
@@ -14,8 +15,9 @@ import { UserResolver } from './resolvers';
     CommonModule,
     HttpClientModule,
     RouterModule,
+    CorePipesModule
   ],
-  exports: [ContainerModule],
+  exports: [ContainerModule, CorePipesModule],
   providers: [
     AuthenticationService,
     LoginGuard,
