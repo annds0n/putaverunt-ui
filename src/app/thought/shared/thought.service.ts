@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
-import { Page } from 'src/app/core';
+import { Page, PageableFilter } from 'src/app/core';
 import { AuthenticationService } from 'src/app/core/authentication.service';
 import { encryptText } from 'src/app/shared';
 
@@ -28,7 +28,12 @@ export class ThoughtService {
             }));
     }
 
-    getPage(): Observable<Page<Thought>> {
-        return this._repository.getPage();
+    getPage(pageable?: PageableFilter): Observable<Page<Thought>> {
+        return this._repository.getPage(pageable);
     }
+
+    remove(thought: Thought): Observable<void> {
+        return this._repository.remove(thought);
+    }
+
 }

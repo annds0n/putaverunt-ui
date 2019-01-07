@@ -24,6 +24,11 @@ body {
     color: $pvt-grey;
 }
 
+.pvt-instant-small {
+    @include putaverunt-instant-smaller;
+    color: $pvt-grey;
+}
+
 .pvt-fadeInUpBig {
     -webkit-animation-name: pvt-fadeInUpBig;
     animation-name: pvt-fadeInUpBig;

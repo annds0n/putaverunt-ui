@@ -1,7 +1,21 @@
 <pvt-container>
-  <div [formGroup]="thoughtForm">
-    <input type="text" formControlName="title">
-    <textarea formControlName="description" cols="30" rows="10"></textarea>
-    <button [disabled]="thoughtForm.invalid" (click)="create()">Salvar</button>
+  <div [formGroup]="thoughtForm" fxLayout="column" fxFlex fxLayoutGap="12px">
+    <div fxLayout="row" fxLayoutAlign="center center">
+        <input fxFlex="80" type="text" class="input-title" formControlName="title">
+    </div>
+    <div fxLayout="row" class="input-container" fxLayoutAlign="center center">
+        <textarea fxFlex fxFlex="80" class="input-field" class="input-field" formControlName="description" cols="30"></textarea>
+        <span *ngIf="thoughtForm.get('description').invalid">Campo inválido</span>
+    </div>
+    <div fxLayoutAlign="space-between">
+      <button mat-raised-button [routerLink]="['..']">
+        <mat-icon>keyboard_return</mat-icon>
+        voltar
+      </button>
+      <button color="accent" mat-raised-button [disabled]="thoughtForm.invalid" (click)="create()">
+        <mat-icon>save</mat-icon>
+        Salvar
+      </button>
+    </div>
   </div>
 </pvt-container>

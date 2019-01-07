@@ -11,6 +11,11 @@ const routes: Routes = [
   },
   {
     path: '',
+    redirectTo: 'thoughts',
+    pathMatch: 'full'
+  },
+  {
+    path: 'thoughts',
     loadChildren: './thought/thought.module#ThoughtModule',
     canActivate: [AuthenticatedRouteGuard]
   },

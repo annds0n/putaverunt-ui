@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatButtonModule, MatCardModule, MatIconModule, MatPaginatorModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatDialogModule, MatIconModule, MatPaginatorModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 
 import { ContainerModule, CoreModule } from '../core';
@@ -24,7 +24,8 @@ import { ThoughtRountingModule } from './thought.routing';
     SharedModule,
     MatPaginatorModule,
     RouterModule,
-    CoreModule
+    CoreModule,
+    MatDialogModule,
   ],
 })
 export class ThoughtModule { }

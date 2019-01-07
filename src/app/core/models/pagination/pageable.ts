@@ -8,3 +8,8 @@ export class Pageable {
     paged: boolean;
     unpaged: boolean;
 }
+
+export interface PageableFilter {
+    size: number;
+    page: number;
+}

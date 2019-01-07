@@ -13,3 +13,7 @@
 .thought-header {
     margin-bottom: 16px;
 }
+
+.thought:not(:last-child) {
+    margin-bottom: 12px;
+}
