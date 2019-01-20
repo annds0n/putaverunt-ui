@@ -19,7 +19,7 @@ const routes: Routes = [
     loadChildren: './thought/thought.module#ThoughtModule',
     canActivate: [AuthenticatedRouteGuard]
   },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: 'thoughts', pathMatch: 'full' }
 ];
 
 @NgModule({

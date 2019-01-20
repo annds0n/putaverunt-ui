@@ -15,7 +15,7 @@
               <span class="pvt-instant">{{ thought.moment | pvtDate }}</span>
             </div>
             <div>
-              <button color="accent" mat-icon-button>
+              <button color="accent" mat-icon-button [routerLink]="['form', thought.id]">
                 <mat-icon>create</mat-icon>
               </button>
               <button color="warn" mat-icon-button (click)="remove(thought)">
