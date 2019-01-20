@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule, MatIconModule } from '@angular/material';
+import { MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { ContainerModule } from 'src/app/core';
 
@@ -20,7 +20,9 @@ import { ThoughtFormComponent } from './thought-form.component';
     ContainerModule,
     SharedModule,
     FlexLayoutModule,
-    RouterModule
+    RouterModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class ThoughtFormModule { }

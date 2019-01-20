@@ -3,7 +3,7 @@ import { MatDialog, MatPaginator, PageEvent } from '@angular/material';
 import { forkJoin } from 'rxjs';
 import { filter, mergeMap } from 'rxjs/operators';
 
-import { Page } from '../core';
+import { BottomMessage, Page } from '../core';
 import { AuthenticationService } from '../core/authentication.service';
 import { ConfirmDeleteDialogComponent, Thought, ThoughtService } from './shared';
 
@@ -23,6 +23,7 @@ export class ThoughtComponent implements OnInit {
   constructor(
     private readonly _authService: AuthenticationService,
     private readonly service: ThoughtService,
+    private readonly bottomMessage: BottomMessage,
     private readonly _dialog: MatDialog
   ) { }
 
@@ -60,9 +61,10 @@ export class ThoughtComponent implements OnInit {
         }))
       .subscribe({
         next: () => {
+          this.bottomMessage.success('Excluído com sucesso!');
           this._refreshPage();
         },
-        error: err => console.log(err)
+        error: err => this.bottomMessage.error(err)
       });
     }
 
@@ -72,7 +74,7 @@ export class ThoughtComponent implements OnInit {
         next: pg => {
           this.page = pg;
         },
-        error: err => console.log(err)
+        error: err => this.bottomMessage.error(err)
       });
     }
 

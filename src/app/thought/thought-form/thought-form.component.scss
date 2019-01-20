@@ -1,20 +1,13 @@
 @import 'mixins';
 
-.input-field {
-    height: 100%;
-    resize: none;
+.input-description {
     font-family: 'Gamja Flower';
     font-size: 1.5rem;
     white-space: pre-wrap;
 }
 
-.input-title{
-    height: 40px;
-    @include putaverunt-generic-title(2em);
-}
-
-.input-container {
-    height: 80%;
+.input-title {
+    @include putaverunt-generic-title(1.6em);
 }
 
 .scrollable{

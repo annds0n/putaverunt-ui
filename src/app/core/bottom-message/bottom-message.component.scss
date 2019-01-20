@@ -1,0 +1,20 @@
+@import 'palette';
+@import 'mixins';
+
+.message-container {
+    padding: 8px 16px;
+}
+
+.message-icon {
+    @include pvt-icon-size(32px); 
+}
+
+.error {
+    background-color: rgba(255, 1, 1, 0.185);
+    color: $pvt-red;
+}
+
+.success {
+    background-color: rgba(9, 197, 18, 0.185);
+    color: $pvt-green;
+}

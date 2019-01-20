@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AuthenticationService } from './authentication.service';
+import { BottomMessageModule } from './bottom-message';
 import { ContainerModule } from './container';
 import { AuthenticatedRouteGuard, LoginGuard } from './guards';
 import { HttpErrorInterceptor, JWTHeaderInterceptor } from './interceptors';
@@ -15,7 +16,8 @@ import { UserResolver } from './resolvers';
     CommonModule,
     HttpClientModule,
     RouterModule,
-    CorePipesModule
+    CorePipesModule,
+    BottomMessageModule
   ],
   exports: [ContainerModule, CorePipesModule],
   providers: [

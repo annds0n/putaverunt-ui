@@ -2,7 +2,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { sha512 } from 'js-sha512';
 import { Observable, of } from 'rxjs';
-import { map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 
 import { Repository, RequestHeaders, UserCredentials } from './models';
 import { User } from './models/user';
@@ -22,7 +22,6 @@ export class AuthenticationService extends Repository {
     authenticate({ password, userName }: UserCredentials): Observable<User> {
 
         const passwordEncrypted = sha512(password);
-        console.log(passwordEncrypted);
 
         const login = new UserCredentials({ userName, password: passwordEncrypted });
 
@@ -31,7 +30,7 @@ export class AuthenticationService extends Repository {
                 observe: 'response',
                 responseType: 'text'
             })
-            // .pipe(catchError(this.handleError))
+            .pipe(catchError(this.handleError))
             .pipe(mergeMap(response => {
                 this._saveToken(response);
                 return this._loadUser();

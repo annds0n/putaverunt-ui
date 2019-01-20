@@ -3,3 +3,4 @@ export * from './repository';
 export * from './request-headers';
 export * from  './perfil.pipe';
 export * from './pagination';
+export * from './standart-error';

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { BottomMessage } from '../../core';
 import { Thought, ThoughtService } from '../shared';
 
 @Component({
@@ -13,7 +14,7 @@ export class ThoughtFormComponent implements OnInit {
   thoughtForm: FormGroup;
 
   constructor(
-
+    private readonly bottomMessage: BottomMessage,
     private readonly service: ThoughtService,
     fb: FormBuilder,
   ) {
@@ -32,8 +33,11 @@ export class ThoughtFormComponent implements OnInit {
 
     this.service.create(thought)
       .subscribe({
-        next: r => console.log(r),
-        error: err => console.log(err)
+        next: () => {
+          this.bottomMessage.success('Adicionado com sucesso!');
+          this.thoughtForm.reset();
+        },
+        error: err => this.bottomMessage.error(err)
       });
   }
 

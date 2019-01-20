@@ -14,7 +14,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(req).pipe(catchError(err => {
-            if (err instanceof HttpErrorResponse && err.status === 401) {
+            if (err instanceof HttpErrorResponse && (err.status === 401 || err.status === 403) && !req.url.includes('login')) {
                 this._router.navigate(['login'], {relativeTo: this._route});
             }
             return throwError(err);

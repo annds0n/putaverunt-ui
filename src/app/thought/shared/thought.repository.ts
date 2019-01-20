@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Page, PageableFilter, Repository } from 'src/app/core';
 
 import { Thought } from './thought';
@@ -31,7 +32,8 @@ export class ThoughtRepository extends Repository {
     }
 
     remove(thought: Thought): Observable<void> {
-        return this.http.delete<void>(`${this.apiUrl}/thoughts/${thought.id}`);
+        return this.http.delete<void>(`${this.apiUrl}/thoughts/${thought.id}`)
+        .pipe(catchError(this.handleError));
     }
 
 }

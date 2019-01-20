@@ -9,8 +9,13 @@ html, body {
     height: 100%;
 }
 
+$imgKey: random(4);
+
+$list: img_1, img_2, img_3, img_4;
+$nth: nth($list, $imgKey);
+
 body {
-    background-image: url('../assets/imgs/20181103_173339.jpg');
+    background-image: url('../assets/imgs/#{$nth}.jpg');
     background-size: cover;
 }
 
@@ -61,3 +66,7 @@ body {
         transform: none;
     }
 } 
+
+.root-message-container {
+    padding: 0 !important;
+}

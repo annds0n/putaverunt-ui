@@ -29,7 +29,8 @@ export class ContainerComponent implements OnInit {
 
   logoff() {
     this.authService.unauthenticate();
-    this._router.navigate([`${this.route.snapshot.url}/login`], {relativeTo: this.route});
+    console.log(this.route.snapshot.url);
+    this._router.navigate([`/login`]);
   }
 
 }

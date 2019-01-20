@@ -32,8 +32,8 @@
         </mat-card>
       </div>
     </div>
-    <div fxLayoutAlign="end end">
-      <mat-paginator (page)="loadPage($event)" [length]="page.totalElements" [pageSize]="10" [pageSizeOptions]="[2, 5, 10, 15, 20]">
+    <div fxLayoutAlign="end end" *ngIf="page.totalElements">
+      <mat-paginator (page)="loadPage($event)" itemsPerPageLabel="'Itens por página'" [length]="page.totalElements" [pageSize]="10" [pageSizeOptions]="[2, 5, 10, 15, 20]">
       </mat-paginator>
     </div>
   </section>
