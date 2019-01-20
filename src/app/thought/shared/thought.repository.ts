@@ -17,7 +17,18 @@ export class ThoughtRepository extends Repository {
         }
 
     create(thought: Thought): Observable<Thought> {
-        return this.http.post<Thought>(`${this.apiUrl}/thoughts`, thought);
+        return this.http.post<Thought>(`${this.apiUrl}/thoughts`, thought)
+        .pipe(catchError(this.handleError));
+    }
+
+    get(id: number): Observable<Thought> {
+        return this.http.get<Thought>(`${this.apiUrl}/thoughts/${id}`)
+        .pipe(catchError(this.handleError));
+    }
+
+    update(thought: Thought): Observable<Thought> {
+        return this.http.put<Thought>(`${this.apiUrl}/thoughts/${thought.id}`, thought)
+        .pipe(catchError(this.handleError));
     }
 
     getPage(pageable?: PageableFilter): Observable<Page<Thought>> {
@@ -25,10 +36,12 @@ export class ThoughtRepository extends Repository {
             const params = new HttpParams()
             .set('page', pageable.page.toString())
             .set('size', pageable.size.toString());
-            return this.http.get<Page<Thought>>(`${this.apiUrl}/thoughts`, {params});
+            return this.http.get<Page<Thought>>(`${this.apiUrl}/thoughts`, {params})
+            .pipe(catchError(this.handleError));
         }
 
-        return this.http.get<Page<Thought>>(`${this.apiUrl}/thoughts`);
+        return this.http.get<Page<Thought>>(`${this.apiUrl}/thoughts`)
+        .pipe(catchError(this.handleError));
     }
 
     remove(thought: Thought): Observable<void> {

@@ -28,6 +28,21 @@ export class ThoughtService {
             }));
     }
 
+    get(id: number): Observable<Thought> {
+        return this._repository.get(id);
+    }
+
+    update({title, description, ...others}: Thought): Observable<Thought> {
+        return this._authService.getSecretKey()
+            .pipe(mergeMap(secret => {
+
+                const encryptedTitle = encryptText(title, secret);
+                const encryptedDescription = encryptText(description, secret);
+
+                return this._repository.update(new Thought({ title: encryptedTitle, description: encryptedDescription, ...others }));
+            }));
+    }
+
     getPage(pageable?: PageableFilter): Observable<Page<Thought>> {
         return this._repository.getPage(pageable);
     }

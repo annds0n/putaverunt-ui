@@ -19,11 +19,11 @@
       </div>
     </div>
     <div fxLayoutAlign="space-between" fxLayout="row">
-      <button mat-raised-button [routerLink]="['..']">
+      <button mat-raised-button (click)="back()">
         <mat-icon>keyboard_return</mat-icon>
         voltar
       </button>
-      <button color="accent" mat-raised-button [disabled]="thoughtForm.invalid" (click)="create()">
+      <button color="accent" mat-raised-button [disabled]="thoughtForm.invalid" (click)="save()">
         <mat-icon>save</mat-icon>
         Salvar
       </button>

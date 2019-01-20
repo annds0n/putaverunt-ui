@@ -8,6 +8,7 @@ import { ContainerModule, CoreModule } from '../core';
 import { SharedModule } from './shared';
 import { ThoughtFormModule } from './thought-form/thought-form.module';
 import { ThoughtComponent } from './thought.component';
+import { ThoughtResolver } from './thought.resolver';
 import { ThoughtRountingModule } from './thought.routing';
 
 @NgModule({
@@ -27,5 +28,6 @@ import { ThoughtRountingModule } from './thought.routing';
     CoreModule,
     MatDialogModule,
   ],
+  providers: [ThoughtResolver]
 })
 export class ThoughtModule { }
