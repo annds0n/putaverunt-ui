@@ -1,0 +1,19 @@
+@import 'mixins';
+
+.thought-text {
+    font-family: 'Gamja Flower';
+    font-size: 1.5rem;
+    white-space: pre-wrap;
+}
+
+.thought-title {
+    @include putaverunt-generic-title(2em);
+}
+
+.thought-header {
+    margin-bottom: 16px;
+}
+
+.thought:not(:last-child) {
+    margin-bottom: 12px;
+}

@@ -1,0 +1,40 @@
+<pvt-container>
+  <section fxFlexFill fxLayout="column" fxLayoutGap="12px">
+    <div fxLayout="row" fxLayoutAlign="end">
+      <button routerLink="form" color="accent" mat-raised-button>
+        <mat-icon>add</mat-icon>
+        <span>Novo</span>
+      </button>
+    </div>
+    <div fxFlex>
+      <div class="pvt-fadeInUpBig thought" *ngFor="let thought of page.content" fxLayout="row" fxLayoutAlign="center center">
+        <mat-card fxFlex="70">
+          <div class="thought-header" fxLayoutAlign="space-between">
+            <div fxLayout="column">
+              <span class="thought-title">{{ thought.title | decryptText:secret }}</span>
+              <span class="pvt-instant">{{ thought.moment | pvtDate }}</span>
+            </div>
+            <div>
+              <button color="accent" mat-icon-button [routerLink]="['form', thought.id]">
+                <mat-icon>create</mat-icon>
+              </button>
+              <button color="warn" mat-icon-button (click)="remove(thought)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+          <mat-card-content>
+            <p class="thought-text">{{ thought.description | decryptText:secret }}</p>
+          </mat-card-content>
+          <div fxLayout="row" fxLayoutAlign="end" *ngIf="thought.changeMoment">
+            <span class="pvt-instant-small">Editado: {{ thought.changeMoment | pvtDate }}</span>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+    <div fxLayoutAlign="end end" *ngIf="page.totalElements">
+      <mat-paginator (page)="loadPage($event)" itemsPerPageLabel="'Itens por página'" [length]="page.totalElements" [pageSize]="10" [pageSizeOptions]="[2, 5, 10, 15, 20]">
+      </mat-paginator>
+    </div>
+  </section>
+</pvt-container>

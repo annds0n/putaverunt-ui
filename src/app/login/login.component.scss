@@ -1,0 +1,10 @@
+@import 'palette';
+@import '~@angular/material/theming';
+@include mat-core();
+@import 'mixins';
+
+.login-content {
+    padding: 16px;
+    border-radius: 10px;
+    background-color: $pvt-light-blue;
+}    

@@ -1,0 +1,5 @@
+<div fxLayout="row" fxLayoutGap="12px" [ngClass]="{'message-container' : true, 'error': type === 'ERROR', 'success' : type === 'SUCCESS'}" class="" fxLayoutAlign="start center">
+  <mat-icon color="warn" class="message-icon" *ngIf="type === 'ERROR'">error_outline</mat-icon>
+  <mat-icon color="accent" class="message-icon" *ngIf="type === 'SUCCESS'">done_outline</mat-icon>
+  <p>{{ message }}</p>
+</div>

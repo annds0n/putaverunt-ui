@@ -1,0 +1,72 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Maven+Pro|Source+Code+Pro|Gamja+Flower');
+@import './theme';
+@import './palette';
+@import './mixins';
+
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+$imgKey: random(4);
+
+$list: img_1, img_2, img_3, img_4;
+$nth: nth($list, $imgKey);
+
+body {
+    background-image: url('../assets/imgs/#{$nth}.jpg');
+    background-size: cover;
+}
+
+.pvt-title {
+    @include putaverunt-title;
+    // font-size: 30px;
+}
+
+.pvt-instant {
+    @include putaverunt-instant;
+    color: $pvt-grey;
+}
+
+.pvt-instant-small {
+    @include putaverunt-instant-smaller;
+    color: $pvt-grey;
+}
+
+.pvt-fadeInUpBig {
+    -webkit-animation-name: pvt-fadeInUpBig;
+    animation-name: pvt-fadeInUpBig;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+@-webkit-keyframes pvt-fadeInUpBig {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+@keyframes pvt-fadeInUpBig {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+} 
+
+.root-message-container {
+    padding: 0 !important;
+}

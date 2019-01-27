@@ -1,0 +1,15 @@
+@import 'mixins';
+
+.input-description {
+    font-family: 'Gamja Flower';
+    font-size: 1.5rem;
+    white-space: pre-wrap;
+}
+
+.input-title {
+    @include putaverunt-generic-title(1.6em);
+}
+
+.scrollable{
+    overflow: auto;
+}

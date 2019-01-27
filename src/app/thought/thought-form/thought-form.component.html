@@ -1,0 +1,32 @@
+<pvt-container>
+  <div fxLayout="column" fxFlexFill>
+
+    <div [formGroup]="thoughtForm" fxFlex fxFlexfxLayoutGap="12px">
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-form-field fxFlex="80">
+          <input matInput type="text" class="input-title" placeholder="Título" formControlName="title">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-form-field fxFlex="80">
+          <textarea matInput class="input-description"
+          formControlName="description" 
+          cdkTextareaAutosize 
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="8" 
+          placeholder="Descrição"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayoutAlign="space-between" fxLayout="row">
+      <button mat-raised-button (click)="back()">
+        <mat-icon>keyboard_return</mat-icon>
+        voltar
+      </button>
+      <button color="accent" mat-raised-button [disabled]="thoughtForm.invalid" (click)="save()">
+        <mat-icon>save</mat-icon>
+        Salvar
+      </button>
+    </div>
+  </div>
+</pvt-container>
