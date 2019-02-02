@@ -1,11 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatPaginator, PageEvent } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { filter, mergeMap } from 'rxjs/operators';
 
 import { BottomMessage, Page } from '../core';
 import { AuthenticationService } from '../core/authentication.service';
+import { Perfil } from '../core/models/perfil';
+import { User } from '../core/models/user';
 import { ConfirmDeleteDialogComponent, Thought, ThoughtService } from './shared';
+
+interface ThoughtRouteData {
+  user: User;
+}
 
 @Component({
   selector: 'pvt-thought',
@@ -17,6 +24,8 @@ export class ThoughtComponent implements OnInit {
   page = new Page<Thought>();
   secret: string;
 
+  readonly = true;
+
   @ViewChild(MatPaginator)
   paginator: MatPaginator;
 
@@ -24,14 +33,19 @@ export class ThoughtComponent implements OnInit {
     private readonly _authService: AuthenticationService,
     private readonly service: ThoughtService,
     private readonly bottomMessage: BottomMessage,
-    private readonly _dialog: MatDialog
+    private readonly _dialog: MatDialog,
+    private readonly _route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
 
-    const pageStream = this.service.getPage();
-    const secretStream = this._authService.getSecretKey();
-      forkJoin(pageStream, secretStream)
+    this._route.data
+    .pipe(mergeMap(({user}: ThoughtRouteData) => {
+      this.readonly = user.perfil === Perfil.GUEST;
+      const pageStream = this.service.getPage();
+      const secretStream = this._authService.getSecretKey();
+        return forkJoin(pageStream, secretStream);
+    }))
       .subscribe({
         next: ([page, secret]) => {
           this.page = page;

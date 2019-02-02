@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthenticatedRouteGuard, LoginGuard } from './core';
+import { PvtNotFoundComponent } from './core/components/pvt-not-found/pvt-not-found.component';
 
 const routes: Routes = [
   {
@@ -19,7 +20,7 @@ const routes: Routes = [
     loadChildren: './thought/thought.module#ThoughtModule',
     canActivate: [AuthenticatedRouteGuard]
   },
-  { path: '**', redirectTo: 'thoughts', pathMatch: 'full' }
+  { path: '**', component: PvtNotFoundComponent }
 ];
 
 @NgModule({

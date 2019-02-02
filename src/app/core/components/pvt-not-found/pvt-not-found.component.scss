@@ -1,0 +1,11 @@
+@import 'mixins';
+
+.fbd-content {
+    background-image: url('../../../../assets/imgs/bojack_-_-.jpeg');
+    background-size: cover;
+}
+
+.forbidden-message {
+    @include putaverunt-generic-title(5em);
+    -webkit-text-stroke: 0.5px white;
+}

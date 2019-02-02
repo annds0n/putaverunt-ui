@@ -1,6 +1,10 @@
 <section  fxFlexFill fxLayout="column">
   <mat-toolbar fxLayoutAlign="space-between center" color="primary">
-    <h3 class="pvt-title mat-display-3">Putaverunt</h3>
+    <a [routerLink]="['']">
+    <h3 class="pvt-title mat-display-3">
+      Putaverunt
+    </h3>
+    </a>
     <div fxLayout="row" fxLayoutGap="20px">
       <div fxLayout="column">
         <span class="mat-body-1">Usuario: {{ user.name }} </span>
