@@ -4,7 +4,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule, MatCardModule, MatDialogModule, MatIconModule, MatPaginatorModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 
-import { ContainerModule, CoreModule } from '../core';
+import { CoreModule } from '../core';
 import { SharedModule } from './shared';
 import { ThoughtFormGuard } from './thought-form.guard';
 import { ThoughtFormModule } from './thought-form/thought-form.module';
@@ -17,7 +17,6 @@ import { ThoughtRountingModule } from './thought.routing';
   imports: [
     CommonModule,
     ThoughtRountingModule,
-    ContainerModule,
     MatCardModule,
     ThoughtFormModule,
     FlexLayoutModule,

@@ -23,6 +23,11 @@ body {
     @include putaverunt-title;
 }
 
+.pvt-loader-text {
+    @include putaverunt-generic-title(2em);
+    color: #ffffff;
+}
+
 .pvt-instant {
     @include putaverunt-instant;
     color: $pvt-grey;
